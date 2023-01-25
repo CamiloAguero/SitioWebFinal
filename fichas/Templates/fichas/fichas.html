@@ -1,0 +1,94 @@
+{% extends "SitioWebApp/base.html" %}
+
+{% load static %}
+{% block title %}Agregar Ficha Clínica{% endblock %}
+
+{% block content %}
+
+<div class="formu">
+
+
+    <h2 class="section-heading mb-4" style="text-align: center;">
+        <span class="section-heading-lower" style="color: darkblue;">FICHA CLÍNICA</span>
+    </h2>
+    <p class="mb-3" style="color: rgb(0, 0, 0); text-align: center;">Rellena los datos</p>
+
+
+    <form action="" method="post" style="color: darkblue; text-align: center; margin: auto" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <h2 class="section-heading mb-4" style="text-align: center;">
+                <span class="section-heading-lower" style="color: darkblue; font-size: 20;">1.-Identificacion del paciente (Datos civiles):</span>
+            </h2>
+            <strong>{{formulario.nombre.label}}</strong>
+            <br>
+            {{formulario.nombre}}
+            <br>
+            <strong>{{formulario.rut.label}}</strong>
+            <br>
+            {{formulario.rut}}
+            <br>
+            <strong>{{formulario.telefono.label}}</strong>
+            <br>
+            {{formulario.telefono}}
+            <br>
+            <strong>{{formulario.nacimiento.label}}</strong>
+            <br>
+            {{formulario.nacimiento}}
+            <br>
+            <strong>{{formulario.edad.label}}</strong>
+            <br>
+            {{formulario.edad}}
+            <br>
+            <strong>{{formulario.imagen.label}}</strong>
+            <br>
+            <input type="file" name="imagen" id="imagen">
+            <br>
+            <strong>{{formulario.direccion.label}}</strong>
+            <br>
+            {{formulario.direccion}}
+            <br>
+            <h2 class="section-heading mb-4" style="text-align: center;">
+                <span class="section-heading-lower" style="color: darkblue; font-size: 20;">2.-Antecedentes (Anamnecis Remota):</span>
+            </h2>
+            <strong>{{formulario.morbido.label}}</strong>
+            <br>
+            {{formulario.morbido}}
+            <br>
+            <strong>{{formulario.cronico.label}}</strong>
+            <br>
+            {{formulario.cronico}}
+            <br>
+            <strong>{{formulario.alergia.label}}</strong>
+            <br>
+            {{formulario.alergia}}
+            <br>
+            <strong>{{formulario.medicamentos.label}}</strong>
+            <br>
+            {{formulario.medicamentos}}
+            <br>
+            <h2 class="section-heading mb-4" style="text-align: center;">
+                <span class="section-heading-lower" style="color: darkblue; font-size: 20;">3.-Antecedentes Podologicos:</span>
+            </h2>
+            <strong>{{formulario.atencion.label}}</strong>
+            <br>
+            {{formulario.atencion}}
+            <br>
+            <strong>{{formulario.amputacion.label}}</strong>
+            <br>
+            {{formulario.amputacion}}
+            <br>
+            <strong>{{formulario.observacion.label}}</strong>
+            <br>
+            {{formulario.observacion}}
+            <br>
+            <br>
+            <button type="submit" class="btn btn-success";>Aceptar</button>
+            <br>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

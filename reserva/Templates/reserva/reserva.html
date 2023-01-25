@@ -1,0 +1,91 @@
+{% extends "SitioWebApp/base.html" %}
+
+{% load static %}
+{% block title %}Reserva tu Hora!{% endblock %}
+
+{% block content %}
+
+<div class="formu">
+
+
+    <h2 class="section-heading mb-4" style="text-align: center;">
+        <span class="section-heading-lower" style="color: darkblue;">RESERVA TU HORA!</span>
+    </h2>
+    <p class="mb-3" style="color: rgb(0, 0, 0); text-align: center;">Rellena los datos y reserva tu horas</p>
+
+    {% if "error" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">La hora ya esta registrada, porfavor eliga otra</p>
+    {% endif %}
+    {% if "finde" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">Lo siento, no trabajamos los fines de semana, escoge otro dia</p>
+    {% endif %}
+    {% if "horario" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">La hora elegida esta fuera de nuestro horario, porfavor eliga otra</p>
+    {% endif %}
+    {% if "dire" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">Si requiere atencion a domicilio, por favor ingrese su domicilio</p>
+    {% endif %}
+    {% if "cant_neg" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">La cantidad tiene que ser mayor a 0, ingrese 1 por defecto</p>
+    {% endif %}
+    {% if "cant" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">La cantidad solo es para <strong>Uña encarnada</strong> y <strong>ojo de gallo</strong>, ingrese 1 por defecto</p>
+    {% endif %}
+    {% if "fecha" in valida %}
+        <p style="color: red; text-align: center; font-size: 20 ">No puedes reservar para hoy</p>
+    {% endif %}
+
+
+    <form action="" method="post" style="color: darkblue; text-align: center; margin: auto">
+        {% csrf_token %}
+        <div>
+            {{formulario.nombre}}
+            <br>
+            {{formulario.mail}}
+            <br>
+            {{formulario.telefono}}
+            <br>
+            <strong>{{formulario.fecha_reserva.label}}</strong>
+            <br>
+            {{formulario.fecha_reserva}}
+            <br>
+            <strong>{{formulario.hora_reserva.label}}</strong>
+            <br>
+            {{formulario.hora_reserva}}
+            <br>
+            <strong>{{formulario.tratamiento.label}}</strong>
+            <br>
+            {{formulario.tratamiento}}
+            <br>
+            <strong>{{formulario.cantidad.label}}</strong>
+            <br>
+            <span style=" text-align: center; font-size: 16 ">Si no es 'Uña encarnada' u 'ojo de gallo' dejelo en 1</span>
+            <br>
+            <span style=" text-align: center; font-size: 16 ">Si es 'Uña encarnada' u 'ojo de gallo' indique la cantidad de ello</span>
+            <br>
+            <input type="number" name="cantidad" id="cantidad" value="1">
+            <br>
+            <strong>{{formulario.domicilio.label}}</strong>
+            <br>
+            <span style=" text-align: center; font-size: 16 ">Apriete el boton para SI, dejelo en blanco para NO</span>
+            <br>
+            {{formulario.domicilio}}
+            <br>
+            <strong>{{formulario.direccion.label}}</strong>
+            <br>
+            {{formulario.direccion}}
+            <br>
+            <button type="submit" class="btn btn-success";>Reservar la hora</button>
+            <br>
+        </div>
+
+    </form>
+
+    <p class="mb-3" style="color: rgb(0, 0, 0); text-align: center;">
+        El horario de atención es de: <br>
+        <strong>Lunes a Viernes 10:00 a 20:00 hrs</strong>
+    </p>
+
+</div>
+
+{% endblock %}

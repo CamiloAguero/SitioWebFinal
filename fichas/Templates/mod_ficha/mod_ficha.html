@@ -1,0 +1,110 @@
+{% extends "SitioWebApp/base.html" %}
+
+{% load static %}
+{% block title %}Modificar Ficha{% endblock %}
+
+{% block content %}
+
+<div class="formu">
+
+    <h2 class="section-heading mb-4" style="text-align: center;">
+        <span class="section-heading-lower" style="color: darkblue;">Ficha Clínica</span>
+    </h2>
+    <p style="color: darkblue; text-align: center; font-size: 20 ">Ficha de <strong>{{ficha.nombre}}</strong></p>
+    <p class="mb-3" style="color: rgb(0, 0, 0); text-align: center;font-size: 20;">DETALLE:</p>
+    
+
+    <form action="" method="post" style="text-align: center;" enctype="multipart/form-data">
+        {% csrf_token %}
+
+
+        <table style="color: white; text-align: center; margin: auto;">
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.nombre.label}}</strong> : {{ficha.nombre}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.rut.label}}</strong> : {{ficha.rut}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.telefono.label}}</strong> : +56 {{ficha.telefono}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.nacimiento.label}}</strong> : {{ficha.nacimiento}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.edad.label}}</strong> : {{ficha.edad}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.direccion.label}}</strong> : {{ficha.direccion}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.imagen.label}}</strong> :
+                    <br>
+                    <img src={{ficha.imagen.url}} alt="" style="width: 15%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% if ficha.imagen2 %}
+                    <strong style="color: darkblue;">{{formulario.imagen2.label}}</strong>
+                    <br>
+                    <img src={{ficha.imagen2.url}} alt="" style="width: 15%;">
+                    {% else %}
+                    <strong style="color: darkblue;">Agregar imagen de proceso</strong> :
+                    <br>
+                    <input type="file" name="imagen2" id="imagen2">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% if ficha.imagen3 %}
+                    <strong style="color: darkblue;">{{formulario.imagen3.label}}</strong>
+                    <br>
+                    <img src={{ficha.imagen3.url}} alt="" style="width: 15%;">
+                    {% else %}
+                    <strong style="color: darkblue;">Agregar imagen final</strong> :
+                    <br>
+                    <input type="file" name="imagen3" id="imagen3">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong style="color: darkblue;">{{formulario.observacion.label}}</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="observacion" id="" cols="30" rows="10">{{ficha.observacion}}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <button type="submit" class="btn btn-success";>Modificar</button>
+                </td>
+            </tr>
+        </table>
+
+        <br>
+
+
+    </form>
+
+</div>
+
+{% endblock %}
